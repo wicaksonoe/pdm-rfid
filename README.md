@@ -21,6 +21,6 @@ $ docker-compose exec -u 1000:1000 php /bin/sh
 ```
 
 ```
-webserver   : [http://localhost:5080](http://localhost:5080)
+webserver   : http://localhost:5080
 mysql       : mysql://localhost:5081
-phpmyadmin  : [http://localhost:5082](http://localhost:5082)
+phpmyadmin  : http://localhost:5082
