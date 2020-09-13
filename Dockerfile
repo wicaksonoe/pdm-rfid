@@ -11,10 +11,14 @@ RUN apk update \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/pear/
 
-COPY . /var/www/
+# COPY . /var/www/
 
 WORKDIR /var/www/
 
+# RUN chmod 755 -R /var/www/
+# RUN chmod 777 -R /var/www/storage
+# RUN chmod 777 -R /var/www/bootstrap/cache
+
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php --install-dir=/usr/local/bin --filename=composer && php -r "unlink('composer-setup.php');"
 
-RUN composer install
+# RUN composer install
