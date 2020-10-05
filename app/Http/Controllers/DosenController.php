@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
-use App\Models\mdosens;
-use DataTables;
 
+use Illuminate\Http\Request;
+use App\Models\Mdosens;
+use Yajra\DataTables\Facades\DataTables;
 
 class DosenController extends Controller
 {
@@ -25,7 +25,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $model = new mdosens ();
+        $model = new mdosens();
     }
 
     /**
@@ -83,10 +83,12 @@ class DosenController extends Controller
     {
         //
     }
+
     public function dataTable()
     {
-        $model = mdosens::query();
-        return DataTabels::of($model)
+        $model = Mdosens::query();
+
+        return DataTables::of($model)
             ->addColumn('action', function ($model) {
                 return view('layouts._action', [
                     'model' => $model,

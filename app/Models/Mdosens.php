@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class mdosens extends Model
+class Mdosens extends Model
 {
+    protected $table = 'mdosen';
+
     protected $fillable = [
         'nidn','nama', 'programstudi'
     ];
