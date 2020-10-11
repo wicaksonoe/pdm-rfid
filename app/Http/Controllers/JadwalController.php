@@ -36,7 +36,7 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // TODO: tole - sama kaya store di DosenController
     }
 
     /**
@@ -47,7 +47,7 @@ class JadwalController extends Controller
      */
     public function show($id)
     {
-        //
+        // TODO: tole - sama kaya show di DosenController
     }
 
     /**
@@ -58,7 +58,7 @@ class JadwalController extends Controller
      */
     public function edit($id)
     {
-        //
+        // DON'T TOUCH THIS FUNC
     }
 
     /**
@@ -70,7 +70,7 @@ class JadwalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // TODO: tole - sama kaya update di DosenController
     }
 
     /**
@@ -81,22 +81,22 @@ class JadwalController extends Controller
      */
     public function destroy($id)
     {
-
+        // TODO: tole - sama kaya delete di DosenController
     }
     public function dataTable()
     {
-    $model = Jadwal::query();
-    return DataTables::of($model)
-        ->addColumn('action', function ($model) {
-            return view('layouts._action', [
-                'model' => $model,
-                'url_show' => route('jadwal.show', $model->id),
-                'url_edit' => route('jadwal.edit', $model->id),
-                'url_destroy' => route('jadwal.destroy', $model->id)
-            ]);
-        })
-        ->addIndexColumn()
-        ->rawColumns(['action'])
-        ->make(true);
+        $model = Jadwal::query();
+        return DataTables::of($model)
+            ->addColumn('action', function ($model) {
+                return view('layouts._action', [
+                    'model' => $model,
+                    'url_show' => route('jadwal.show', $model->id),
+                    'url_edit' => route('jadwal.edit', $model->id),
+                    'url_destroy' => route('jadwal.destroy', $model->id)
+                ]);
+            })
+            ->addIndexColumn()
+            ->rawColumns(['action'])
+            ->make(true);
     }
 }

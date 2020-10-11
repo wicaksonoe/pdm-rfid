@@ -37,7 +37,15 @@ class DosenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * // TODO: tole - buatin function store. cek request is ajax > validation > store > return json (format dibawah)
+         * [
+         *      'success': true,
+         *      'message': 'Data berhasil ditambahkan',
+         *      'data': (stored data),
+         * ]
+         */
+
     }
 
     /**
@@ -48,6 +56,16 @@ class DosenController extends Controller
      */
     public function show($id)
     {
+        /**
+         * // TODO: tole - buatin function show single data. cek request is ajax > get > return json (format dibawah)
+         * yang sekarang di comment boleh, dihapus juga gapapa
+         * [
+         *      'success': true,
+         *      'message': 'Data berhasil didapatkan',
+         *      'data': (finded data),
+         * ]
+         */
+
         $model = Mdosens::findOrFail($id);
         return view ('layouts.show_dosen',compact('model'));
     }
@@ -60,6 +78,7 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
+        // DON'T TOUCH THIS FUNC
         $model = Mdosens::findOrFail($id);
         return view('page.form.formdosen',compact('model'));
     }
@@ -73,7 +92,14 @@ class DosenController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /**
+         * // TODO: tole - buatin function update. cek request is ajax > validation > update > return json (format dibawah)
+         * [
+         *      'success': true,
+         *      'message': 'Data berhasil diubah',
+         *      'data': (updated data),
+         * ]
+         */
     }
 
     /**
@@ -84,6 +110,15 @@ class DosenController extends Controller
      */
     public function destroy($id)
     {
+        /**
+         * // TODO: tole - buatin function delete. cek request is ajax > delete > return json (format dibawah)
+         * [
+         *      'success': true,
+         *      'message': 'Data berhasil dihapus',
+         *      'data': null,
+         * ]
+         */
+
         $model = Mdosens::findOrFail($id);
         $model->delete();
     }
