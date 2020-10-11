@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mdosens extends Model
 {
-    protected $table = 'mdosens';
+    protected $table = 'mdosen';
 
     protected $fillable = [
         'nidn','nama', 'programstudi'

@@ -48,7 +48,8 @@ class DosenController extends Controller
      */
     public function show($id)
     {
-        //
+        $model = Mdosens::findOrFail($id);
+        return view ('layouts.show_dosen',compact('model'));
     }
 
     /**
@@ -59,7 +60,8 @@ class DosenController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Mdosens::findOrFail($id);
+        return view('page.form.formdosen',compact('model'));
     }
 
     /**
@@ -82,7 +84,8 @@ class DosenController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Mdosens::findOrFail($id);
+        $model->delete();
     }
 
     public function dataTable()
