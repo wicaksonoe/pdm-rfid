@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{asset('css\bootstrap.min.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -80,6 +81,7 @@
             @yield('content')
         </main>
     </div>
+    @include('layouts._modal')
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

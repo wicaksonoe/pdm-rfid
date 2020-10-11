@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Mdosens;
 use Yajra\DataTables\Facades\DataTables;
+use App\Models\Matkul;
 
-class DosenController extends Controller
+class MatkulController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class DosenController extends Controller
      */
     public function index()
     {
-        return view('page.dosen');
+        return view('page.matkul');
     }
 
     /**
@@ -25,8 +25,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $model = new Mdosens();
-        return view('page.form.formdosen',compact('model'));
+        $model = new Matkul();
     }
 
     /**
@@ -84,17 +83,16 @@ class DosenController extends Controller
     {
         //
     }
-
     public function dataTable()
     {
-        $model = Mdosens::query();
+        $model = Matkul::query();
         return DataTables::of($model)
             ->addColumn('action', function ($model) {
                 return view('layouts._action', [
                     'model' => $model,
-                    'url_show' => route('dosen.show', $model->id),
-                    'url_edit' => route('dosen.edit', $model->id),
-                    'url_destroy' => route('dosen.destroy', $model->id)
+                    'url_show' => route('matkul.show', $model->id),
+                    'url_edit' => route('matkul.edit', $model->id),
+                    'url_destroy' => route('matkul.destroy', $model->id)
                 ]);
             })
             ->addIndexColumn()

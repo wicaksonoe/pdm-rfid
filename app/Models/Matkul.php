@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mdosens extends Model
+class Matkul extends Model
 {
-    protected $table = 'mdosens';
+    protected $table = 'm_mk';
 
     protected $fillable = [
-        'nidn','nama', 'programstudi'
+        'kodemk','namamk'
     ];
 }

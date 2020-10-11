@@ -4,7 +4,7 @@
 @include('layouts._modal')
 <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3 class="panel-title">Data Dosen
+      <h3 class="panel-title">Data Matkul
       </h3>
     </div>
     <div class="panel-body">
@@ -12,9 +12,8 @@
               <thead>
                   <tr>
                     <th>ID</th>
-                    <th>NIDN</th>
-                    <th>Nama</th>
-                    <th>Program Studi</th>
+                    <th>Kode Matkul</th>
+                    <th>Nama Matkul</th>
                     <th>Action</th>
                   </tr>
               </thead>
@@ -24,9 +23,8 @@
               <tfoot>
                   <tr>
                     <th>ID</th>
-                    <th>NIDN</th>
-                    <th>Nama</th>
-                    <th>Program Studi</th>
+                    <th>Kode Matkul</th>
+                    <th>Nama Matkul</th>
                     <th>Action</th>
                   </tr>
               </tfoot>
@@ -41,12 +39,11 @@
             responsive: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('table.Mdosens') }}",
+            ajax: "{{ route('table.Matkul') }}",
             columns: [
                 {data: 'DT_RowIndex', name: 'id'},
-                {data: 'nidn', name: 'nidn'},
-                {data: 'nama', name: 'nama'},
-                {data: 'programstudi', name: 'programstudi'},
+                {data: 'kodemk', name: 'kodemk'},
+                {data: 'namamk', name: 'namamk'},
                 {data: 'action', name: 'action', orderable:false, searchable:false}
             ]
         });

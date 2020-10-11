@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Mdosens;
+use App\Models\Jadwal;
 use Yajra\DataTables\Facades\DataTables;
 
-class DosenController extends Controller
+class JadwalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class DosenController extends Controller
      */
     public function index()
     {
-        return view('page.dosen');
+        return view('page.jadwal');
     }
 
     /**
@@ -25,8 +25,7 @@ class DosenController extends Controller
      */
     public function create()
     {
-        $model = new Mdosens();
-        return view('page.form.formdosen',compact('model'));
+        $model = new Jadwal();
     }
 
     /**
@@ -82,23 +81,22 @@ class DosenController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
 
+    }
     public function dataTable()
     {
-        $model = Mdosens::query();
-        return DataTables::of($model)
-            ->addColumn('action', function ($model) {
-                return view('layouts._action', [
-                    'model' => $model,
-                    'url_show' => route('dosen.show', $model->id),
-                    'url_edit' => route('dosen.edit', $model->id),
-                    'url_destroy' => route('dosen.destroy', $model->id)
-                ]);
-            })
-            ->addIndexColumn()
-            ->rawColumns(['action'])
-            ->make(true);
+    $model = Jadwal::query();
+    return DataTables::of($model)
+        ->addColumn('action', function ($model) {
+            return view('layouts._action', [
+                'model' => $model,
+                'url_show' => route('jadwal.show', $model->id),
+                'url_edit' => route('jadwal.edit', $model->id),
+                'url_destroy' => route('jadwal.destroy', $model->id)
+            ]);
+        })
+        ->addIndexColumn()
+        ->rawColumns(['action'])
+        ->make(true);
     }
 }
