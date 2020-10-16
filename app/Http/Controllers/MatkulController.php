@@ -36,7 +36,7 @@ class MatkulController extends Controller
      */
     public function store(Request $request)
     {
-        // TODO: tole - sama kaya store di DosenController
+        // TODO: wicak - sama kaya store di DosenController
     }
 
     /**
@@ -47,7 +47,7 @@ class MatkulController extends Controller
      */
     public function show($id)
     {
-        // TODO: tole - sama kaya show di DosenController
+        // TODO: wicak - sama kaya show di DosenController
     }
 
     /**
@@ -70,7 +70,7 @@ class MatkulController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // TODO: tole - sama kaya update di DosenController
+        // TODO: wicak - sama kaya update di DosenController
     }
 
     /**
@@ -81,7 +81,7 @@ class MatkulController extends Controller
      */
     public function destroy($id)
     {
-        // TODO: tole - sama kaya delete di DosenController
+        // TODO: wicak - sama kaya delete di DosenController
     }
     public function dataTable()
     {
