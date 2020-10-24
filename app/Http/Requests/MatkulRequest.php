@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 
 class MatkulRequest extends FormRequest
@@ -24,6 +25,9 @@ class MatkulRequest extends FormRequest
      */
     public function rules()
     {
+        $kodemk = $this->kodemk;
+        $id = Request::segment(2);
+
         switch ($this->method()) {
             case 'POST':
                 return [
@@ -38,7 +42,9 @@ class MatkulRequest extends FormRequest
                     'kodemk' => [
                         'bail',
                         'required',
-                        Rule::unique('m_mk')->ignore($this->kodemk, 'kodemk'),
+                        Rule::unique('m_mk')->where(function ($query) use ($kodemk, $id) {
+                            return $query->where('kodemk', $kodemk)->where('id', '!=', $id);
+                        }),
                     ],
                     'namamk' => 'bail|required',
                 ];

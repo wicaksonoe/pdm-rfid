@@ -5,7 +5,7 @@
 <div class="panel panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Data Mata Kuliah</h3>
-        <button class="btn btn-primary mb-4" id="create"><i class="fa fa-plus-square mr-2"></i>Tambah Mata Kuliah</button>
+        <button class="btn btn-primary mb-4" data-toggle="modal" data-target="#create"><i class="fa fa-plus-square mr-2"></i>Tambah Mata Kuliah</button>
     </div>
     <div class="panel-body">
         <table id="datatable" class="table table-hover" class="table table-striped table-bordered" style="width:100%">
