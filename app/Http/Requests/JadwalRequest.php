@@ -57,9 +57,13 @@ class JadwalRequest extends FormRequest
     public function messages()
     {
         return [
+            'kodemk.required'       => 'mata kuliah tidak boleh kosong.',
+            'kelas.required'        => 'kelas tidak boleh kosong.',
             'nidn.required'         => 'nidn tidak boleh kosong.',
-            'nama.required'         => 'nama tidak boleh kosong.',
-            'programstudi.required' => 'program studi tidak boleh kosong.',
+            'hari.required'         => 'hari tidak boleh kosong.',
+            'kode_hari.required'    => 'kode hari tidak boleh kosong.',
+            'jam_in.required'       => 'jam in tidak boleh kosong.',
+            'jam_out.required'      => 'jam out tidak boleh kosong.',
         ];
     }
 }

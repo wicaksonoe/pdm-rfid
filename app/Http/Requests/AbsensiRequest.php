@@ -39,6 +39,7 @@ class AbsensiRequest extends FormRequest
                 return $rule;
                 break;
             case 'PUT':
+                return $rule;
             case 'PATCH':
                 return $rule;
                 break;
@@ -57,9 +58,13 @@ class AbsensiRequest extends FormRequest
     public function messages()
     {
         return [
+            'kode.required'         => 'kode mata kuliah tidak boleh kosong.',
+            'kelas.required'        => 'kelas tidak boleh kosong.',
             'nidn.required'         => 'nidn tidak boleh kosong.',
-            'nama.required'         => 'nama tidak boleh kosong.',
-            'programstudi.required' => 'program studi tidak boleh kosong.',
+            'hari.required'         => 'hari tidak boleh kosong.',
+            'tanggal.required'      => 'tanggal tidak boleh kosong.',
+            'checkin.required'      => 'checkin tidak boleh kosong.',
+            'checkout.required'     => 'checkout tidak boleh kosong.',
         ];
     }
 }

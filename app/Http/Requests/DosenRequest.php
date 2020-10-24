@@ -39,7 +39,7 @@ class DosenRequest extends FormRequest
                     'nidn' => [
                         'bail',
                         'required',
-                        // Rule::unique('mdosen')->ignore($this->nidn, 'nidn'),
+                        Rule::unique('mdosen')->ignore($this->nidn, 'nidn'),
                     ],
                     'nama'         => 'bail|required',
                     'programstudi' => 'bail|required',
@@ -62,6 +62,7 @@ class DosenRequest extends FormRequest
     {
         return [
             'nidn.required'         => 'nidn tidak boleh kosong.',
+            'nidn.unique'           => 'nidn sudah dipakai.',
             'nama.required'         => 'nama tidak boleh kosong.',
             'programstudi.required' => 'program studi tidak boleh kosong.',
         ];
