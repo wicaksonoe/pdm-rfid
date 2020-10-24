@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('/dosen','App\Http\Controllers\DosenController');
-Route::resource('/matkul','App\Http\Controllers\MatkulController');
+Route::resource('/matkul','App\Http\Controllers\MatkulController', ['except' => ['create', 'edit']]);
 Route::resource('/jadwal','App\Http\Controllers\JadwalController');
 Route::resource('/absensi','App\Http\Controllers\AbsensiController');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MatkulRequest;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use App\Models\Matkul;
@@ -15,84 +16,117 @@ class MatkulController extends Controller
      */
     public function index()
     {
-        return view('page.matkul');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $model = new Matkul();
+        return view('page.matkul.index');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\MatkulRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MatkulRequest $request)
     {
         // TODO: wicak - sama kaya store di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('matkul.index');
+        }
+
+        $input = $request->validated();
+
+        $mataKuliah = new Matkul;
+        $mataKuliah->kodemk = $input['kodemk'];
+        $mataKuliah->namamk = $input['namamk'];
+        $mataKuliah->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mata kuliah berhasil ditambahkan.',
+            'data'    => $mataKuliah,
+        ], 200);
     }
 
     /**
      * Display the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         // TODO: wicak - sama kaya show di DosenController
-    }
+        if (!$request->ajax()) {
+            return redirect()->route('matkul.index');
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // DON'T TOUCH THIS FUNC
+        return Matkul::findOrFail($id);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\MatkulRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(MatkulRequest $request, $id)
     {
         // TODO: wicak - sama kaya update di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('matkul.index');
+        }
+
+        $input = $request->validated();
+
+        $mataKuliah = Matkul::findOrFail($id);
+        $mataKuliah->kodemk = $input['kodemk'];
+        $mataKuliah->namamk = $input['namamk'];
+        $mataKuliah->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mata kuliah berhasil diubah.',
+            'data'    => $mataKuliah,
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
         // TODO: wicak - sama kaya delete di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('matkul.index');
+        }
+
+        $mataKuliah = Matkul::findOrFail($id);
+        $mataKuliah->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Mata kuliah berhasil dihapus.',
+            'data'    => $mataKuliah,
+        ], 200);
     }
+
+    /**
+     * Create datatable
+     *
+     * @return Yajra\DataTables\Facades\DataTables
+     */
     public function dataTable()
     {
-        $model = Matkul::query();
-        return DataTables::of($model)
-            ->addColumn('action', function ($model) {
-                return view('layouts._action', [
-                    'model' => $model,
-                    'url_show' => route('matkul.show', $model->id),
-                    'url_edit' => route('matkul.edit', $model->id),
-                    'url_destroy' => route('matkul.destroy', $model->id)
+        $mataKuliah = Matkul::query();
+        return DataTables::of($mataKuliah)
+            ->addColumn('action', function ($mataKuliah) {
+                return view('page.matkul._action', [
+                    'value' => $mataKuliah->id,
                 ]);
             })
             ->addIndexColumn()
