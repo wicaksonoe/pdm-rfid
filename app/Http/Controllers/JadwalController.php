@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jadwal;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\JadwalRequest;
 
 class JadwalController extends Controller
 {
@@ -34,9 +35,28 @@ class JadwalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JadwalRequest $request)
     {
-        // TODO: tole - sama kaya store di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('jadwal.index');
+        }
+
+        $input = $request->validated();
+        $jadwal = new Jadwal;
+        $jadwal->kodemk    = $input['kodemk'];
+        $jadwal->kelas     = $input['kelas'];
+        $jadwal->hari      = $input['hari'];
+        $jadwal->kode_hari = $input['kode_hari'];
+        $jadwal->jam_in    = $input['jam_in'];
+        $jadwal->jam_out   = $input['jam_out'];
+        $jadwal->nidn      = $input['nidn'];
+        $jadwal->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jadwal berhasil ditambahkan.',
+            'data'    => $jadwal,
+        ], 200);
     }
 
     /**
@@ -45,9 +65,19 @@ class JadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        // TODO: tole - sama kaya show di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('jadwal.index');
+        }
+
+        $jadwal = Jadwal::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jadwal berhasil ditemukan.',
+            'data'    => $jadwal,
+        ], 200);
     }
 
     /**
@@ -68,9 +98,28 @@ class JadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(JadwalRequest $request, $id)
     {
-        // TODO: tole - sama kaya update di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('jadwal.index');
+        }
+
+        $input = $request->validated();
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->kodemk    = $input['kodemk'];
+        $jadwal->kelas     = $input['kelas'];
+        $jadwal->hari      = $input['hari'];
+        $jadwal->kode_hari = $input['kode_hari'];
+        $jadwal->jam_in    = $input['jam_in'];
+        $jadwal->jam_out   = $input['jam_out'];
+        $jadwal->nidn      = $input['nidn'];
+        $jadwal->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jadwal berhasil ditambahkan.',
+            'data'    => $jadwal,
+        ], 200);
     }
 
     /**
@@ -79,9 +128,19 @@ class JadwalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        // TODO: tole - sama kaya delete di DosenController
+        if (!$request->ajax()) {
+            return redirect()->route('jadwal.index');
+        }
+
+        $jadwal = Jadwal::findOrFail($id);
+        $jadwal->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Jadwal berhasil dihapus.',
+            'data'    => $jadwal,
+        ], 200);
     }
     public function dataTable()
     {

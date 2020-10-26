@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mdosens;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\DosenRequest;
 
 class DosenController extends Controller
 {
@@ -35,17 +36,24 @@ class DosenController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DosenRequest $request)
     {
-        /**
-         * // TODO: tole - buatin function store. cek request is ajax > validation > store > return json (format dibawah)
-         * [
-         *      'success': true,
-         *      'message': 'Data berhasil ditambahkan',
-         *      'data': (stored data),
-         * ]
-         */
+        if (!$request->ajax()) {
+            return redirect()->route('dosen.index');
+        }
 
+        $input = $request->validated();
+        $mdosen = new Mdosens;
+        $mdosen->nidn         = $input['nidn'];
+        $mdosen->nama         = $input['nama'];
+        $mdosen->programstudi = $input['programstudi'];
+        $mdosen->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Dosen berhasil ditambahkan.',
+            'data'    => $mdosen,
+        ], 200);
     }
 
     /**
@@ -54,19 +62,20 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        /**
-         * // TODO: tole - buatin function show single data. cek request is ajax > get > return json (format dibawah)
-         * yang sekarang di comment boleh, dihapus juga gapapa
-         * [
-         *      'success': true,
-         *      'message': 'Data berhasil didapatkan',
-         *      'data': (finded data),
-         * ]
-         */
+        if (!$request->ajax()) {
+            return redirect()->route('dosen.index');
+        }
 
-        $model = Mdosens::findOrFail($id);
+        $mdosen = Mdosens::findOrFail($id);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Dosen berhasil ditemukan.',
+            'data'    => $mdosen,
+        ], 200);
+
         return view ('layouts.show_dosen',compact('model'));
     }
 
@@ -90,16 +99,25 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DosenRequest $request, $id)
     {
-        /**
-         * // TODO: tole - buatin function update. cek request is ajax > validation > update > return json (format dibawah)
-         * [
-         *      'success': true,
-         *      'message': 'Data berhasil diubah',
-         *      'data': (updated data),
-         * ]
-         */
+        if (!$request->ajax()) {
+            return redirect()->route('dosen.index');
+        }
+
+        $input = $request->validated();
+        $mdosen = Mdosens::findOrFail($id);
+
+        $mdosen->nidn         = $input['nidn'];
+        $mdosen->nama         = $input['nama'];
+        $mdosen->programstudi = $input['programstudi'];
+        $mdosen->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Dosen berhasil diubah.',
+            'data'    => $mdosen,
+        ], 200);
     }
 
     /**
@@ -108,19 +126,19 @@ class DosenController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        /**
-         * // TODO: tole - buatin function delete. cek request is ajax > delete > return json (format dibawah)
-         * [
-         *      'success': true,
-         *      'message': 'Data berhasil dihapus',
-         *      'data': null,
-         * ]
-         */
+        if (!$request->ajax()) {
+            return redirect()->route('dosen.index');
+        }
 
-        $model = Mdosens::findOrFail($id);
-        $model->delete();
+        $mdosen = Mdosens::findOrFail($id);
+        $mdosen->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'Data Dosen berhasil dihapus.',
+            'data'    => $mdosen,
+        ], 200);
     }
 
     public function dataTable()
