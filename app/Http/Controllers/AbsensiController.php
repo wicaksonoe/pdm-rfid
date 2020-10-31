@@ -16,7 +16,7 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        return view('page.absensi');
+        return view('page.absensi.index');
     }
 
     /**
@@ -50,6 +50,7 @@ class AbsensiController extends Controller
         $absensi->tanggal  = $input['tanggal'];
         $absensi->checkin  = $input['checkin'];
         $absensi->checkout = $input['checkout'];
+        $absensi->idjadwal = $input['idjadwal'];
         $absensi->save();
 
         return response()->json([
@@ -71,13 +72,7 @@ class AbsensiController extends Controller
             return redirect()->route('absensi.index');
         }
 
-        $absensi = Absensi::findOrFail($id);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Absensi berhasil ditemukan.',
-            'data'    => $absensi,
-        ], 200);
+        return Absensi::findOrFail($id);
     }
 
     /**
@@ -115,6 +110,7 @@ class AbsensiController extends Controller
         $absensi->tanggal  = $input['tanggal'];
         $absensi->checkin  = $input['checkin'];
         $absensi->checkout = $input['checkout'];
+        $absensi->idjadwal = $input['idjadwal'];
         $absensi->save();
 
         return response()->json([
@@ -146,14 +142,11 @@ class AbsensiController extends Controller
     }
     public function dataTable()
     {
-        $model = Absensi::query();
-        return DataTables::of($model)
-            ->addColumn('action', function ($model) {
-                return view('layouts._action', [
-                    'model' => $model,
-                    'url_show' => route('absensi.show', $model->id),
-                    'url_edit' => route('absensi.edit', $model->id),
-                    'url_destroy' => route('absensi.destroy', $model->id)
+        $mataKuliah = Absensi::query();
+        return DataTables::of($mataKuliah)
+            ->addColumn('action', function ($mataKuliah) {
+                return view('page.absensi._action', [
+                    'value' => $mataKuliah->id,
                 ]);
             })
             ->addIndexColumn()
