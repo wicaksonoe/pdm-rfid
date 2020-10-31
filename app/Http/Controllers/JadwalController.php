@@ -20,16 +20,6 @@ class JadwalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $model = new Jadwal();
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -72,17 +62,6 @@ class JadwalController extends Controller
         }
 
         return Jadwal::findOrFail($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // DON'T TOUCH THIS FUNC
     }
 
     /**
@@ -136,6 +115,12 @@ class JadwalController extends Controller
             'data'    => $jadwal,
         ], 200);
     }
+
+    /**
+     * Create datatable
+     *
+     * @return Yajra\DataTables\Facades\DataTables
+     */
     public function dataTable()
     {
         $mataKuliah = Jadwal::query();

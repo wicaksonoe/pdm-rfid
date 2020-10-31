@@ -20,16 +20,6 @@ class AbsensiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $model = new Absensi();
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -73,17 +63,6 @@ class AbsensiController extends Controller
         }
 
         return Absensi::findOrFail($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // DON'T TOUCH THIS FUNC
     }
 
     /**
@@ -140,6 +119,12 @@ class AbsensiController extends Controller
             'data'    => $absensi,
         ], 200);
     }
+
+    /**
+     * Create datatable
+     *
+     * @return Yajra\DataTables\Facades\DataTables
+     */
     public function dataTable()
     {
         $mataKuliah = Absensi::query();
