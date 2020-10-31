@@ -16,7 +16,7 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        return view('page.jadwal');
+        return view('page.jadwal.index');
     }
 
     /**
@@ -71,13 +71,7 @@ class JadwalController extends Controller
             return redirect()->route('jadwal.index');
         }
 
-        $jadwal = Jadwal::findOrFail($id);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Jadwal berhasil ditemukan.',
-            'data'    => $jadwal,
-        ], 200);
+        return Jadwal::findOrFail($id);
     }
 
     /**
@@ -144,14 +138,11 @@ class JadwalController extends Controller
     }
     public function dataTable()
     {
-        $model = Jadwal::query();
-        return DataTables::of($model)
-            ->addColumn('action', function ($model) {
-                return view('layouts._action', [
-                    'model' => $model,
-                    'url_show' => route('jadwal.show', $model->id),
-                    'url_edit' => route('jadwal.edit', $model->id),
-                    'url_destroy' => route('jadwal.destroy', $model->id)
+        $mataKuliah = Jadwal::query();
+        return DataTables::of($mataKuliah)
+            ->addColumn('action', function ($mataKuliah) {
+                return view('page.jadwal._action', [
+                    'value' => $mataKuliah->id,
                 ]);
             })
             ->addIndexColumn()

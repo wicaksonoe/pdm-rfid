@@ -16,7 +16,7 @@ class DosenController extends Controller
      */
     public function index()
     {
-        return view('page.dosen');
+        return view('page.dosen.index');
     }
 
     /**
@@ -68,15 +68,7 @@ class DosenController extends Controller
             return redirect()->route('dosen.index');
         }
 
-        $mdosen = Mdosens::findOrFail($id);
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Data Dosen berhasil ditemukan.',
-            'data'    => $mdosen,
-        ], 200);
-
-        return view ('layouts.show_dosen',compact('model'));
+        return Mdosens::findOrFail($id);
     }
 
     /**
@@ -143,14 +135,11 @@ class DosenController extends Controller
 
     public function dataTable()
     {
-        $model = Mdosens::query();
-        return DataTables::of($model)
-            ->addColumn('action', function ($model) {
-                return view('layouts._action', [
-                    'model' => $model,
-                    'url_show' => route('dosen.show', $model->id),
-                    'url_edit' => route('dosen.edit', $model->id),
-                    'url_destroy' => route('dosen.destroy', $model->id)
+        $mataKuliah = Mdosens::query();
+        return DataTables::of($mataKuliah)
+            ->addColumn('action', function ($mataKuliah) {
+                return view('page.dosen._action', [
+                    'value' => $mataKuliah->id,
                 ]);
             })
             ->addIndexColumn()
