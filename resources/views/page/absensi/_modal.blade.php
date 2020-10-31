@@ -28,15 +28,15 @@
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
-                        <input type="text" id="create_tanggal" class="form-control">
+                        <input type="date" id="create_tanggal" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="checkin">Check In</label>
-                        <input type="text" id="create_checkin" class="form-control">
+                        <input type="time" id="create_checkin" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="checkout">Check Out</label>
-                        <input type="text" id="create_checkout" class="form-control">
+                        <input type="time" id="create_checkout" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="idjadwal">ID Jadwal</label>
@@ -82,15 +82,15 @@
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
-                        <input type="text" id="view_tanggal" class="form-control" disabled>
+                        <input type="date" id="view_tanggal" class="form-control" disabled>
                     </div>
                     <div class="form-group">
                         <label for="checkin">Check In</label>
-                        <input type="text" id="view_checkin" class="form-control" disabled>
+                        <input type="time" id="view_checkin" class="form-control" disabled>
                     </div>
                     <div class="form-group">
                         <label for="checkout">Check Out</label>
-                        <input type="text" id="view_checkout" class="form-control" disabled>
+                        <input type="time" id="view_checkout" class="form-control" disabled>
                     </div>
                     <div class="form-group">
                         <label for="idjadwal">ID Jadwal</label>
@@ -136,15 +136,15 @@
                     </div>
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
-                        <input type="text" id="update_tanggal" class="form-control">
+                        <input type="date" id="update_tanggal" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="checkin">Check In</label>
-                        <input type="text" id="update_checkin" class="form-control">
+                        <input type="time" id="update_checkin" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="checkout">Check Out</label>
-                        <input type="text" id="update_checkout" class="form-control">
+                        <input type="time" id="update_checkout" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="idjadwal">ID Jadwal</label>

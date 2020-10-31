@@ -32,8 +32,9 @@ class AbsensiRequest extends FormRequest
             'tanggal'     => 'bail|required',
             'checkin'     => 'bail|required',
             'checkout'    => 'bail|required',
+            'idjadwal'    => 'bail|required',
         ];
-        
+
         switch ($this->method()) {
             case 'POST':
                 return $rule;
@@ -65,6 +66,7 @@ class AbsensiRequest extends FormRequest
             'tanggal.required'      => 'tanggal tidak boleh kosong.',
             'checkin.required'      => 'checkin tidak boleh kosong.',
             'checkout.required'     => 'checkout tidak boleh kosong.',
+            'idjadwal.required'     => 'id jadwal tidak boleh kosong.',
         ];
     }
 }

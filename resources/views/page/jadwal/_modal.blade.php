@@ -32,11 +32,11 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Jam In</label>
-                        <input type="text" id="create_jam_in" class="form-control">
+                        <input type="time" id="create_jam_in" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="nama">Jam Out</label>
-                        <input type="text" id="create_jam_out" class="form-control">
+                        <input type="time" id="create_jam_out" class="form-control">
                     </div>
                 </form>
             </div>
@@ -82,11 +82,11 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Jam In</label>
-                        <input type="text" id="view_jam_in" class="form-control" disabled>
+                        <input type="time" id="view_jam_in" class="form-control" disabled>
                     </div>
                     <div class="form-group">
                         <label for="nama">Jam Out</label>
-                        <input type="text" id="view_jam_out" class="form-control" disabled>
+                        <input type="time" id="view_jam_out" class="form-control" disabled>
                     </div>
                 </form>
             </div>
@@ -132,11 +132,11 @@
                     </div>
                     <div class="form-group">
                         <label for="nama">Jam In</label>
-                        <input type="text" id="update_jam_in" class="form-control">
+                        <input type="time" id="update_jam_in" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="nama">Jam Out</label>
-                        <input type="text" id="update_jam_out" class="form-control">
+                        <input type="time" id="update_jam_out" class="form-control">
                     </div>
                 </form>
             </div>

@@ -50,7 +50,7 @@ class AbsensiController extends Controller
         $absensi->tanggal  = $input['tanggal'];
         $absensi->checkin  = $input['checkin'];
         $absensi->checkout = $input['checkout'];
-        // $absensi->idjadwal = $input['idjadwal'];
+        $absensi->idjadwal = $input['idjadwal'];
         $absensi->save();
 
         return response()->json([
@@ -110,7 +110,7 @@ class AbsensiController extends Controller
         $absensi->tanggal  = $input['tanggal'];
         $absensi->checkin  = $input['checkin'];
         $absensi->checkout = $input['checkout'];
-        // $absensi->idjadwal = $input['idjadwal'];
+        $absensi->idjadwal = $input['idjadwal'];
         $absensi->save();
 
         return response()->json([
