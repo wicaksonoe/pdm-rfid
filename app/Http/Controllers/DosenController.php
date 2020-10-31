@@ -20,17 +20,6 @@ class DosenController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $model = new Mdosens();
-        return view('page.form.formdosen',compact('model'));
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -69,19 +58,6 @@ class DosenController extends Controller
         }
 
         return Mdosens::findOrFail($id);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // DON'T TOUCH THIS FUNC
-        $model = Mdosens::findOrFail($id);
-        return view('page.form.formdosen',compact('model'));
     }
 
     /**
@@ -133,6 +109,11 @@ class DosenController extends Controller
         ], 200);
     }
 
+    /**
+     * Create datatable
+     *
+     * @return Yajra\DataTables\Facades\DataTables
+     */
     public function dataTable()
     {
         $mataKuliah = Mdosens::query();
